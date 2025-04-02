@@ -1,0 +1,12 @@
+Interface Based:
+1. Yes
+2. Yes
+3. FunctionalityBasedBCCTest.java
+4. Base + 4x List1 + 4x List2 + 2x Boundary
+
+
+Functionality Based:
+1. Yes
+2. Yes
+3. FunctionalityBasedBCCTest.java
+4. Base + 10x List1 + 10x List2
