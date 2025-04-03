@@ -5,8 +5,48 @@ Interface Based:
 4. Base + 4x List1 + 4x List2 + 2x Boundary
 
 
+Test
+Case ID	Description	            list1 Variation	list2 Variation	Expected Output/Behavior
+BASE	Normal operation	["listen", "state"]	["silent", "taste"]	["listen", "silent", "state", "taste"]
+L1V1	Null list1	null	BASE list2	Throws IllegalArgumentException
+L1V2	Empty list1	[]	BASE list2	empty list
+L1V3	Single element list1	["listen"]	BASE list2	["listen", "silent"] (size 2)
+L1V4	Different length strings in list1	["a", "ab"]	BASE list2	empty list
+L2V1	Null list2	BASE list1	null	Throws IllegalArgumentException
+L2V2	Empty list2	BASE list1	[]	empty list
+L2V3	Single element list2	BASE list1	["silent"]	["listen", "silent"] (size 2)
+L2V4	Different length strings in list2	BASE list1	["a", "ab"]	empty list
+BV1	Single character strings	["a"]	["a"]	["a"]
+BV2	Max length strings	[1000'a'+1000'b']	[1000'b'+1000'a']	Contains both input strings (size 2)
+
+
 Functionality Based:
 1. Yes
 2. Yes
 3. FunctionalityBasedBCCTest.java
 4. Base + 10x List1 + 10x List2
+
+
+Test
+Case ID	Description	            list1 Variations	            list2 Variations	                    Expected Output
+BASE	Normal operation	["listen", "state", "hello"]	["silent", "taste", "world"]	["listen", "silent", "state", "taste"] (size 4)
+L1V1	No anagrams in list1	["apple", "banana"]	BASE list2	empty list
+L1V2	All anagrams in list1	["listen", "enlist"]	BASE list2	["listen", "silent", "enlist"] (size 3)
+L1V3	Identical strings in list1	["aaa", "aaa"]	BASE list2	empty list
+L1V4	Subset anagrams in list1	["abc", "def"]	BASE list2	empty list
+L1V5	Case insensitive in list1	["Listen", "State"]	BASE list2	["Listen", "silent", "State", "taste"] (size 4)
+L1V6	Special chars in list1	["a!b@", "b!a@"]	BASE list2	empty list
+L1V7	Whitespace in list1	["a b c", "abc "]	BASE list2	empty list
+L1V8	Unicode in list1	["café", "éfac"]	BASE list2	empty list
+L1V9	No duplicates in list1	["abc"]	BASE list2	empty list
+L1V10	Duplicates in list1	["abc", "abc"]	BASE list2	empty list
+L2V1	No anagrams in list2	BASE list1	["apple", "banana"]	empty list
+L2V2	All anagrams in list2	BASE list1	["silent", "taste"]	["listen", "silent", "state", "taste"] (size 4)
+L2V3	Identical strings in list2	BASE list1	["aaa", "aaa"]	empty list
+L2V4	Subset anagrams in list2	BASE list1	["silent", "apple"]	["listen", "silent"] (size 2)
+L2V5	Case insensitive in list2	BASE list1	["Silent", "Taste"]	["listen", "Silent", "state", "Taste"] (size 4)
+L2V6	Special chars in list2	BASE list1	["@ba!", "d@b!"]	empty list
+L2V7	Whitespace in list2	BASE list1	["t a s t e", "silent"]	contains "silent"
+L2V8	Unicode in list2	BASE list1	["facé", "taste"]	contains "taste"
+L2V9	No duplicates in list2	BASE list1	["silent"]	["listen", "silent"] (size 2)
+L2V10	Duplicates in list2	BASE list1	["silent", "silent"]	["listen", "silent"] (size 2)
